@@ -2,7 +2,7 @@ var rootEl = $('#root');
 var saveButton = $('.saveBtn');
 var timeBlocks = $('.time-block');
 var currentDay = $('#currentDay');
-var currentHourMilitary = dayjs().format('H');
+var currentHourMilitary = parseInt(dayjs().format('H'));
 
 $(function () {
 
@@ -21,12 +21,12 @@ timeBlocks.each(function() {
     var textAreaContent = textArea.val();
     localStorage.setItem(blockID, textAreaContent);
   })
-
-  if (blockID < "hour-" + currentHourMilitary) {
+  var blockInt = parseInt(blockID.slice(5, blockID.length))
+  if (blockInt < currentHourMilitary) {
     timeBlock.addClass('past');
-  } else if (blockID === "hour-" + currentHourMilitary) {
+  } else if (blockInt === currentHourMilitary) {
     timeBlock.addClass('present');
-  } else if (blockID > "hour-" + currentHourMilitary) {
+  } else if (blockInt > currentHourMilitary) {
     timeBlock.addClass('future');
   }
 })
