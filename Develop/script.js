@@ -4,7 +4,7 @@ in the html. */
 var rootEl = $('#root');
 var saveButton = $('.saveBtn');
 var timeBlocks = $('.time-block');
-
+var currentDay = $('#currentDay');
 
 $(function () {
 
@@ -14,12 +14,21 @@ $(function () {
   function? How can DOM traversal be used to get the "hour-x" id of the
   time-block containing the button that was clicked? How might the id be
   useful when saving the description in local storage? */
+timeBlocks.each(function() {
+  var timeBlock = $(this);
+  
 
-saveButton.click(function() {
-  var blockID = $(this).parent().attr('id');
-  var textAreaContent = $(this).parent().find('textarea').val();
-  console.log(textAreaContent);
+  var blockID = timeBlock.attr('id');
+  var textArea = timeBlock.find('textarea');
+
+  textArea.val(localStorage.getItem(blockID));
+
+  saveButton.click(function() {
+    var textAreaContent = textArea.val();
+    localStorage.setItem(blockID, textAreaContent);
+  })
 })
+
 
 /*   TODO: Add code to apply the past, present, or future class to each time
   block by comparing the id to the current hour. HINTS: How can the id
@@ -34,6 +43,3 @@ saveButton.click(function() {
    */
   // TODO: Add code to display the current date in the header of the page.
 });
-
-
-// $('div[attribute="value"]');
