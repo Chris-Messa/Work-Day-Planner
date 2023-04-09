@@ -1,7 +1,9 @@
-var saveButton = $('.saveBtn');
-var timeBlocks = $('.time-block');
-var currentDay = $('#currentDay');
-var currentHour = parseInt(dayjs().format('H'));
+const saveButton = $('.saveBtn');
+const timeBlocks = $('.time-block');
+const currentDay = $('#currentDay');
+
+// Sets current hour in 24 hour time
+const currentHour = parseInt(dayjs().format('H'));
 
 $(function () {
 
@@ -9,26 +11,29 @@ currentDay.text(dayjs().format('dddd, MMMM D'))
 
 timeBlocks.each(function() {
 
-  timeBlock = $(this);
-  console.log(timeBlock);
+  /*
+   Here, 'this' refers to the current object in the array of objects contained 
+   within the timeBlocks variable
+   */
+  const timeBlock = $(this);
 
-  var blockID = timeBlock.attr('id');
-  var textArea = timeBlock.find('textarea');
+  const blockID = timeBlock.attr('id');
+  const textArea = timeBlock.find('textarea');
   
   textArea.val(localStorage.getItem(blockID));
 
-  saveButton.click(function() {
-    var textAreaContent = textArea.val();
+  saveButton.click( ()=> {
+    const textAreaContent = textArea.val();
     localStorage.setItem(blockID, textAreaContent);
   })
 
-  var blockHour = parseInt(blockID.slice(5, blockID.length))
+  const blockHour = parseInt(blockID.slice(5, blockID.length))
 
   if (blockHour < currentHour) {
     timeBlock.addClass('past');
   } else if (blockHour === currentHour) {
     timeBlock.addClass('present');
-  } else if (blockHour > currentHour) {
+  } else {
     timeBlock.addClass('future');
   }
 })
