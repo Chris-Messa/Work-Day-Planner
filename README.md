@@ -2,7 +2,7 @@
 
 ## Description
 
-This application allows the user to see the current date and time displayed in the header area, and then select from a group of time blocks separated by the hour from the hours of 9:00 AM to 5:00 PM to write a task in that block and then save that task to local storage.
+This application allows the user to see the current date displayed in the header area, and then select from a group of time blocks separated by the hour from the hours of 9:00 AM to 5:00 PM to write a task in that block and then save that task to local storage.
 
 ### Examples
 
