@@ -3,7 +3,7 @@ const timeBlocks = $('.time-block');
 const currentDay = $('#currentDay');
 
 // Sets current hour in 24 hour time
-const currentHour = parseInt(dayjs().hour(12).format('H'));
+const currentHour = parseInt(dayjs().format('H'));
 
 $(function () {
 
